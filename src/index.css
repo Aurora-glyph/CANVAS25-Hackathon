@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Outfit:wght@300;400;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-bits-dark: #0f172a;
+  --color-bits-gold: #fbbf24;
+  --color-bits-cyan: #22d3ee;
+  --color-bits-ocean: #1e3a8a;
+
+  --font-display: 'Cinzel', serif;
+  --font-body: 'Outfit', sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-bits-dark text-white font-body overflow-x-hidden;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display text-bits-gold;
+  }
+
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+  transform: translateZ(0);
+}
+
+@keyframes lightning {
+
+  0%,
+  100% {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    opacity: 1;
+  }
+
+  50% {
+    text-shadow: 0 0 20px rgba(34, 211, 238, 0.8), 0 0 40px rgba(251, 191, 36, 0.6);
+  }
+
+  52% {
+    text-shadow: none;
+    opacity: 0.8;
+  }
+
+  54% {
+    text-shadow: 0 0 20px rgba(34, 211, 238, 0.8);
+    opacity: 1;
+  }
+}
+
+.animate-lightning {
+  animation: lightning 3s infinite;
+}
+
+.bg-noise {
+  position: relative;
+}
+
+.bg-noise::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
